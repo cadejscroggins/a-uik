@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
-  "name": "a-ui",
+  "name": "a-uik",
   "license": "MIT",
-  "homepage": "https://github.com/cadejscroggins/a-ui",
+  "homepage": "https://github.com/cadejscroggins/a-uik",
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "apollo-link-context": "^1.0.20",

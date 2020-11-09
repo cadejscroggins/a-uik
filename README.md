@@ -1,3 +1,3 @@
-# a-ui
+# a-uik
 
-> A UI starter with all the goodies.
+> A UI starter kit.
