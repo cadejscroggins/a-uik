@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "name": "a-ui",
+  "license": "MIT",
+  "homepage": "https://github.com/cadejscroggins/a-ui",
+  "dependencies": {
+    "@apollo/client": "^3.2.5",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-http": "^1.5.17",
+    "aws-appsync-auth-link": "^3.0.2",
+    "aws-appsync-subscription-link": "^3.0.3"
+  },
+  "peerDependencies": {
+    "@apollo/react-hooks": "^4",
+    "@chakra-ui/core": "next",
+    "a-cdk": "^0",
+    "a-conf": "^0",
+    "aws-amplify": "^3",
+    "react": "^16",
+    "react-dom": "^16"
+  }
+}
