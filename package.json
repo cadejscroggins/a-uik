@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "a-uik",
   "license": "MIT",
   "homepage": "https://github.com/cadejscroggins/a-uik",
@@ -12,7 +12,7 @@
   },
   "peerDependencies": {
     "@apollo/react-hooks": "^4",
-    "@chakra-ui/core": "next",
+    "@chakra-ui/core": "^1",
     "a-cdk": "^0",
     "a-conf": "^0",
     "aws-amplify": "^3",
