@@ -3,6 +3,7 @@ import React from 'react';
 import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ChakraProvider, extendTheme } from '@chakra-ui/core';
+import { DefaultSeo } from 'next-seo';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createHttpLink } from 'apollo-link-http';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
@@ -39,9 +40,10 @@ const apolloClient = new ApolloClient({
   ]),
 });
 
-const AppProvider = ({ children, theme }) => (
+const AppProvider = ({ children, seo, theme }) => (
   <ApolloProvider client={apolloClient}>
     <ChakraProvider resetCSS theme={extendTheme(theme)}>
+      <DefaultSeo {...seo} />
       {children}
     </ChakraProvider>
   </ApolloProvider>

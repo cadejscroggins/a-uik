@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "a-uik",
   "license": "MIT",
   "homepage": "https://github.com/cadejscroggins/a-uik",
@@ -16,6 +16,7 @@
     "a-cdk": "^0",
     "a-conf": "^0",
     "aws-amplify": "^3",
+    "next-seo": "^4",
     "react": "^16",
     "react-dom": "^16"
   }
