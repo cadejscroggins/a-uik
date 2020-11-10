@@ -1,4 +1,5 @@
 import Amplify, { Auth } from 'aws-amplify';
+import GoogleFonts from 'next-google-fonts';
 import React from 'react';
 import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -40,13 +41,21 @@ const apolloClient = new ApolloClient({
   ]),
 });
 
-const AppProvider = ({ children, seo, theme }) => (
+const AppProvider = ({ children, fonts, seo, theme }) => (
   <ApolloProvider client={apolloClient}>
     <ChakraProvider resetCSS theme={extendTheme(theme)}>
+      {fonts && <GoogleFonts href={fonts} />}
       <DefaultSeo {...seo} />
       {children}
     </ChakraProvider>
   </ApolloProvider>
 );
+
+AppProvider.defaultProps = {
+  children: null,
+  fonts: null,
+  seo: {},
+  theme: {},
+};
 
 export default AppProvider;
