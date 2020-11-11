@@ -3,8 +3,8 @@ import GoogleFonts from 'next-google-fonts';
 import React from 'react';
 import {
   ApolloClient,
-  HttpLink,
   InMemoryCache,
+  createHttpLink,
   from,
   split,
 } from '@apollo/client';
@@ -33,18 +33,16 @@ const appsyncLinkConfig = {
   url: process.env.apiGraphqlEndpoint,
 };
 
-const httpLink = new HttpLink({
-  uri: process.env.apiGraphqlEndpoint,
-});
+const httpLink = createHttpLink({ uri: process.env.apiGraphqlEndpoint });
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: from([
     createAuthLink(appsyncLinkConfig),
     split(
-      (op) => op.query.definitions[0].operation !== 'subscription',
-      httpLink,
-      createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink)
+      (op) => op.query.definitions[0].operation === 'subscription',
+      createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink),
+      httpLink
     ),
   ]),
 });
