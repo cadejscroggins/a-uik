@@ -1,14 +1,18 @@
 import Amplify, { Auth } from 'aws-amplify';
 import GoogleFonts from 'next-google-fonts';
 import React from 'react';
-import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  from,
+  split,
+} from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ChakraProvider, extendTheme } from '@chakra-ui/core';
 import { DefaultSeo } from 'next-seo';
 import { createAuthLink } from 'aws-appsync-auth-link';
-import { createHttpLink } from 'apollo-link-http';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
-import { setContext } from 'apollo-link-context';
 
 Amplify.configure({
   Auth: {
@@ -20,23 +24,27 @@ Amplify.configure({
   },
 });
 
+const appsyncLinkConfig = {
+  auth: {
+    credentials: Auth.currentCredentials,
+    type: process.env.apiAuthenticationType,
+  },
+  region: process.env.apiRegion,
+  url: process.env.apiGraphqlEndpoint,
+};
+
+const httpLink = new HttpLink({
+  uri: process.env.apiGraphqlEndpoint,
+});
+
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  link: ApolloLink.from([
-    createAuthLink({
-      auth: {
-        credentials: Auth.currentCredentials,
-        type: process.env.apiAuthenticationType,
-      },
-      region: process.env.apiRegion,
-      url: process.env.apiGraphqlEndpoint,
-    }),
-    createSubscriptionHandshakeLink(
-      process.env.apiGraphqlEndpoint,
-      ApolloLink.from([
-        setContext((request, previousContext) => previousContext),
-        createHttpLink({ uri: process.env.apiGraphqlEndpoint }),
-      ])
+  link: from([
+    createAuthLink(appsyncLinkConfig),
+    split(
+      (op) => op.query.definitions[0].operation !== 'subscription',
+      httpLink,
+      createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink)
     ),
   ]),
 });
