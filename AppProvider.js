@@ -9,7 +9,7 @@ import {
   split,
 } from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { ChakraProvider, extendTheme } from '@chakra-ui/core';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { DefaultSeo } from 'next-seo';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
