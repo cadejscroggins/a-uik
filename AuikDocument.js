@@ -10,20 +10,28 @@ const AuikDocument = ({
   },
   privateRouteRedirect,
   publicRouteRedirect,
-}) => (
-  <Html>
-    <Head>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(()=>{const iid=localStorage.getItem("CognitoIdentityServiceProvider.${process.env.authUserPoolWebClientId}.LastAuthUser");${publicRouteRedirect}&&${isPublicRoute}&&iid&&(window.location.href="${publicRouteRedirect}"),${privateRouteRedirect}&&${isPrivateRoute}&&!iid&&(window.location.href="${privateRouteRedirect}?redirect=${page}")})();`,
-        }}
-      />
-    </Head>
-    <body>
-      <Main />
-      <NextScript />
-    </body>
-  </Html>
-);
+}) => {
+  const stringifiedIsPrivateRoute = JSON.stringify(isPrivateRoute);
+  const stringifiedIsPublicRoute = JSON.stringify(isPublicRoute);
+  const prr = `${privateRouteRedirect}?redirect=${page}`;
+  const stringifiedPrivateRouteRedirect = JSON.stringify(prr);
+  const stringifiedPublicRouteRedirect = JSON.stringify(publicRouteRedirect);
+
+  return (
+    <Html>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(()=>{const iid=localStorage.getItem("CognitoIdentityServiceProvider.${process.env.authUserPoolWebClientId}.LastAuthUser");if(${stringifiedPublicRouteRedirect}&&${stringifiedIsPublicRoute}&&iid){window.location.href=${stringifiedPublicRouteRedirect};}if(${stringifiedPrivateRouteRedirect}&&${stringifiedIsPrivateRoute}&&!iid){window.location.href=${stringifiedPrivateRouteRedirect};}})();`,
+          }}
+        />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+};
 
 export default AuikDocument;

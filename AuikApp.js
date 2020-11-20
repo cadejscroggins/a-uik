@@ -24,8 +24,6 @@ Amplify.configure({
   },
 });
 
-Auth.currentAuthenticatedUser();
-
 const appsyncLinkConfig = {
   auth: {
     credentials: Auth.currentCredentials,
