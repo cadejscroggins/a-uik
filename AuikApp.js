@@ -24,6 +24,8 @@ Amplify.configure({
   },
 });
 
+Auth.currentAuthenticatedUser();
+
 const appsyncLinkConfig = {
   auth: {
     credentials: Auth.currentCredentials,
@@ -47,7 +49,7 @@ const apolloClient = new ApolloClient({
   ]),
 });
 
-const AppProvider = ({ children, fonts, seo, theme }) => (
+const AuikApp = ({ children, fonts, seo, theme }) => (
   <ApolloProvider client={apolloClient}>
     <ChakraProvider resetCSS theme={extendTheme(theme)}>
       {fonts && <GoogleFonts href={fonts} />}
@@ -57,11 +59,11 @@ const AppProvider = ({ children, fonts, seo, theme }) => (
   </ApolloProvider>
 );
 
-AppProvider.defaultProps = {
+AuikApp.defaultProps = {
   children: null,
   fonts: null,
   seo: {},
   theme: {},
 };
 
-export default AppProvider;
+export default AuikApp;
