@@ -16,6 +16,7 @@
     "aws-amplify": "^3",
     "next": "^10",
     "react": "^17",
-    "react-dom": "^17"
+    "react-dom": "^17",
+    "react-feather": "^2"
   }
 }
