@@ -4,9 +4,9 @@
   "license": "MIT",
   "homepage": "https://github.com/cadejscroggins/a-uik",
   "files": [
-    "**/*.js",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "c/*.js"
   ],
   "scripts": {
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js,json,graphql,md}\"",
