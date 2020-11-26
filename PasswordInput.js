@@ -25,16 +25,16 @@ const PasswordInput = (props, ref) => {
             aria-label={text}
             borderBottomLeftRadius={0}
             borderTopLeftRadius={0}
+            colorScheme="gray"
             icon={
               passwordVisible ? <C.Icon as={EyeOff} /> : <C.Icon as={Eye} />
             }
             onClick={() => setPasswordVisible(!passwordVisible)}
-            variant="ghost"
-            colorScheme="gray"
             sx={{
               '&:hover': { bg: 'transparent', opacity: '1' },
               opacity: '0.8',
             }}
+            variant="ghost"
           />
         </C.Tooltip>
       </C.InputRightElement>

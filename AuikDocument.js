@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import React from 'react';
 import { Head, Html, Main, NextScript } from 'next/document';
 
