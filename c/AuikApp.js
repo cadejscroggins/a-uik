@@ -1,18 +1,10 @@
+import * as apollo from '@apollo/client';
 import Amplify, { Auth } from 'aws-amplify';
-import GoogleFonts from 'next-google-fonts';
 import React from 'react';
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-  from,
-  split,
-} from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { DefaultSeo } from 'next-seo';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
+import AuikContent from './AuikContent';
 
 Amplify.configure({
   Auth: {
@@ -33,13 +25,15 @@ const appsyncLinkConfig = {
   url: process.env.apiGraphqlEndpoint,
 };
 
-const httpLink = createHttpLink({ uri: process.env.apiGraphqlEndpoint });
+const httpLink = apollo.createHttpLink({
+  uri: process.env.apiGraphqlEndpoint,
+});
 
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: from([
+const apolloClient = new apollo.ApolloClient({
+  cache: new apollo.InMemoryCache(),
+  link: apollo.from([
     createAuthLink(appsyncLinkConfig),
-    split(
+    apollo.split(
       (op) => op.query.definitions[0].operation === 'subscription',
       createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink),
       httpLink
@@ -47,21 +41,10 @@ const apolloClient = new ApolloClient({
   ]),
 });
 
-const AuikApp = ({ children, fonts, seo, theme }) => (
+const AuikApp = (props) => (
   <ApolloProvider client={apolloClient}>
-    <ChakraProvider resetCSS theme={extendTheme(theme)}>
-      {fonts && <GoogleFonts href={fonts} />}
-      <DefaultSeo {...seo} />
-      {children}
-    </ChakraProvider>
+    <AuikContent {...props} />
   </ApolloProvider>
 );
-
-AuikApp.defaultProps = {
-  children: null,
-  fonts: null,
-  seo: {},
-  theme: {},
-};
 
 export default AuikApp;
