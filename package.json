@@ -19,14 +19,14 @@
     "next-seo": "^4.17.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.3.4",
+    "@apollo/client": "^3.3.5",
     "@apollo/react-hooks": "^4.0.0",
     "@babel/core": "^7.12.10",
     "@chakra-ui/react": "^1.0.3",
     "@emotion/react": "^11.1.2",
     "@emotion/styled": "^11.0.0",
     "a-conf": "^0.1.5",
-    "aws-amplify": "^3.3.11",
+    "aws-amplify": "^3.3.12",
     "eslint": "^7.15.0",
     "framer-motion": "^2.9.5",
     "graphql": "^15.4.0",
