@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import 'focus-visible/dist/focus-visible';
 
 const AuikContent = ({ children, fonts, seo, theme }) => {
-  const router = useRouter();
+  const { asPath } = useRouter();
 
   return (
     <ChakraProvider resetCSS theme={extendTheme(theme)}>
@@ -21,8 +21,8 @@ const AuikContent = ({ children, fonts, seo, theme }) => {
       />
       {fonts && <GoogleFonts href={fonts} />}
       <DefaultSeo
-        titleTemplate={router.asPath === '/' ? undefined : seo.titleTemplate}
         {...seo}
+        titleTemplate={asPath === '/' ? '%s' : seo.titleTemplate}
       />
       {children}
     </ChakraProvider>
