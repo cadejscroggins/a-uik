@@ -13,28 +13,25 @@ const AuikDocument = ({
   initialColorMode,
   privateRouteRedirect,
   publicRouteRedirect,
-}) => {
-  return (
-    <Html>
-      <Head />
-      <body>
-        {!!privateRouteRedirect && !!publicRouteRedirect && (
-          <AuthRedirectScript
-            isPrivateRoute={isPrivateRoute}
-            isPublicRoute={isPublicRoute}
-            page={page}
-            privateRouteRedirect={privateRouteRedirect}
-            publicRouteRedirect={publicRouteRedirect}
-          />
-        )}
-        {!!initialColorMode && (
-          <ColorModeScript initialColorMode={initialColorMode} />
-        )}
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-};
+}) => (
+  <Html>
+    <Head>
+      {!!privateRouteRedirect && !!publicRouteRedirect && (
+        <AuthRedirectScript
+          isPrivateRoute={isPrivateRoute}
+          isPublicRoute={isPublicRoute}
+          page={page}
+          privateRouteRedirect={privateRouteRedirect}
+          publicRouteRedirect={publicRouteRedirect}
+        />
+      )}
+    </Head>
+    <body>
+      <ColorModeScript initialColorMode={initialColorMode} />
+      <Main />
+      <NextScript />
+    </body>
+  </Html>
+);
 
 export default AuikDocument;
