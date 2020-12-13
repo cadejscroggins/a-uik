@@ -22,7 +22,11 @@ const AuikContent = ({ children, fonts, seo, theme }) => {
       {fonts && <GoogleFonts href={fonts} />}
       <DefaultSeo
         {...seo}
-        titleTemplate={asPath === '/' ? '%s' : seo.titleTemplate}
+        titleTemplate={
+          (seo.titleTemplateDisabled || []).includes(asPath)
+            ? '%s'
+            : seo.titleTemplate
+        }
       />
       {children}
     </ChakraProvider>
