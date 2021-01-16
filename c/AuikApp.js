@@ -24,24 +24,18 @@ const appsyncLinkConfig = {
   url: process.env.apiGraphqlEndpoint,
 };
 
-const httpLink = A.createHttpLink({
-  uri: process.env.apiGraphqlEndpoint,
-});
-
-const apolloClient = new A.ApolloClient({
-  cache: new A.InMemoryCache(),
-  link: A.from([
-    createAuthLink(appsyncLinkConfig),
-    A.split(
-      (op) => op.query.definitions[0].operation === 'subscription',
-      createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink),
-      httpLink
-    ),
-  ]),
-});
-
 const AuikApp = (props) => (
-  <A.ApolloProvider client={apolloClient}>
+  <A.ApolloProvider
+    client={
+      new A.ApolloClient({
+        cache: new A.InMemoryCache(),
+        link: A.from([
+          createAuthLink(appsyncLinkConfig),
+          createSubscriptionHandshakeLink(appsyncLinkConfig),
+        ]),
+      })
+    }
+  >
     <AuikContent {...props} />
   </A.ApolloProvider>
 );
