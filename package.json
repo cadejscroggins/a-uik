@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.3.7",
-    "@apollo/react-hooks": "^4.0.0",
     "@babel/core": "^7.12.10",
     "@chakra-ui/react": "^1.1.4",
     "@emotion/react": "^11.1.4",
@@ -39,7 +38,6 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@apollo/react-hooks": "^4",
     "@chakra-ui/react": "^1",
     "aws-amplify": "^3",
     "next": "^10",

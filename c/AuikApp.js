@@ -1,7 +1,6 @@
-import * as apollo from '@apollo/client';
+import * as A from '@apollo/client';
 import Amplify, { Auth } from 'aws-amplify';
 import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
 import AuikContent from './AuikContent';
@@ -25,15 +24,15 @@ const appsyncLinkConfig = {
   url: process.env.apiGraphqlEndpoint,
 };
 
-const httpLink = apollo.createHttpLink({
+const httpLink = A.createHttpLink({
   uri: process.env.apiGraphqlEndpoint,
 });
 
-const apolloClient = new apollo.ApolloClient({
-  cache: new apollo.InMemoryCache(),
-  link: apollo.from([
+const apolloClient = new A.ApolloClient({
+  cache: new A.InMemoryCache(),
+  link: A.from([
     createAuthLink(appsyncLinkConfig),
-    apollo.split(
+    A.split(
       (op) => op.query.definitions[0].operation === 'subscription',
       createSubscriptionHandshakeLink(appsyncLinkConfig, httpLink),
       httpLink
@@ -42,9 +41,9 @@ const apolloClient = new apollo.ApolloClient({
 });
 
 const AuikApp = (props) => (
-  <ApolloProvider client={apolloClient}>
+  <A.ApolloProvider client={apolloClient}>
     <AuikContent {...props} />
-  </ApolloProvider>
+  </A.ApolloProvider>
 );
 
 export default AuikApp;
