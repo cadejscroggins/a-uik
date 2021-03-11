@@ -1,8 +1,8 @@
-import GoogleFonts from 'next-google-fonts';
 import React from 'react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { DefaultSeo } from 'next-seo';
 import { Global } from '@emotion/react';
+import { GoogleFonts } from 'next-google-fonts';
 import { useRouter } from 'next/router';
 import 'focus-visible/dist/focus-visible';
 

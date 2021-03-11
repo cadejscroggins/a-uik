@@ -17,7 +17,7 @@
     "aws-appsync-auth-link": "^3.0.3",
     "aws-appsync-subscription-link": "^3.0.5",
     "focus-visible": "^5.2.0",
-    "next-google-fonts": "^1.2.1",
+    "next-google-fonts": "^2.0.0",
     "next-seo": "^4.19.0"
   },
   "devDependencies": {
