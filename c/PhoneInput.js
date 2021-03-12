@@ -1,5 +1,5 @@
 import * as C from '@chakra-ui/react';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 const PhoneInput = (props, ref) => (
   <C.InputGroup>
@@ -8,4 +8,4 @@ const PhoneInput = (props, ref) => (
   </C.InputGroup>
 );
 
-export default PhoneInput;
+export default forwardRef(PhoneInput);
