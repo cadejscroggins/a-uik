@@ -27,13 +27,7 @@ const AuikDocument = ({
         />
       )}
       {links.map((link) => (
-        <link
-          key={link.href}
-          as={link.as}
-          href={link.href}
-          rel={link.rel}
-          type={link.type}
-        />
+        <link key={link.href} {...link} />
       ))}
     </Head>
     <body>
@@ -47,8 +41,8 @@ const AuikDocument = ({
 );
 
 AuikDocument.defaultProps = {
-  fonts: [],
   initialColorMode: null,
+  links: [],
   privateRouteRedirect: null,
   publicRouterRedirect: null,
 };
