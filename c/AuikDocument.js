@@ -10,8 +10,8 @@ const AuikDocument = ({
       pageProps: { isPrivateRoute, isPublicRoute },
     },
   },
-  fonts,
   initialColorMode,
+  links,
   privateRouteRedirect,
   publicRouteRedirect,
 }) => (
@@ -26,29 +26,15 @@ const AuikDocument = ({
           publicRouteRedirect={publicRouteRedirect}
         />
       )}
-      {!!fonts.length && (
-        <>
-          {fonts.map((font) => (
-            <link
-              key={font.file}
-              as="font"
-              crossOrigin="anonymous"
-              href={font.file}
-              rel="preload"
-              type="font/woff2"
-            />
-          ))}
-          <style global jsx>
-            {`
-              ${fonts.reduce(
-                (acc, font) =>
-                  `${acc}@font-face{font-family:'${font.name}';font-style:normal;font-weight:${font.weight};font-display:swap;src:url(${font.file})format('woff2');}`,
-                ''
-              )}
-            `}
-          </style>
-        </>
-      )}
+      {links.map((link) => (
+        <link
+          key={link.href}
+          as={link.as}
+          href={link.href}
+          rel={link.rel}
+          type={link.type}
+        />
+      ))}
     </Head>
     <body>
       {initialColorMode && (
