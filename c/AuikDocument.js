@@ -11,7 +11,6 @@ const AuikDocument = ({
     },
   },
   initialColorMode,
-  links,
   privateRouteRedirect,
   publicRouteRedirect,
 }) => (
@@ -26,9 +25,6 @@ const AuikDocument = ({
           publicRouteRedirect={publicRouteRedirect}
         />
       )}
-      {links.map((link) => (
-        <link key={link.href} {...link} />
-      ))}
     </Head>
     <body>
       {initialColorMode && (
@@ -42,7 +38,6 @@ const AuikDocument = ({
 
 AuikDocument.defaultProps = {
   initialColorMode: null,
-  links: [],
   privateRouteRedirect: null,
   publicRouterRedirect: null,
 };
