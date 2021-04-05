@@ -1,11 +1,6 @@
+import * as A from '@apollo/client';
 import Amplify, { Auth } from 'aws-amplify';
 import React from 'react';
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  from,
-} from '@apollo/client';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
 import AuikContent from './AuikContent';
@@ -30,11 +25,11 @@ const appsyncLinkConfig = {
 };
 
 const AuikApp = (props) => (
-  <ApolloProvider
+  <A.ApolloProvider
     client={
-      new ApolloClient({
-        cache: new InMemoryCache(),
-        link: from([
+      new A.ApolloClient({
+        cache: new A.InMemoryCache(),
+        link: A.from([
           createAuthLink(appsyncLinkConfig),
           createSubscriptionHandshakeLink(appsyncLinkConfig),
         ]),
@@ -42,7 +37,7 @@ const AuikApp = (props) => (
     }
   >
     <AuikContent {...props} />
-  </ApolloProvider>
+  </A.ApolloProvider>
 );
 
 export default AuikApp;
