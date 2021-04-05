@@ -1,17 +1,12 @@
-import * as C from '@chakra-ui/react';
 import React from 'react';
+import { FormControl, FormErrorMessage } from '@chakra-ui/react';
 
 const BaseFormErrorMessage = ({ formError }) => (
-  <C.FormControl isInvalid={formError}>
-    <C.FormErrorMessage
-      display="block"
-      mt={8}
-      pos="relative"
-      textAlign="center"
-    >
+  <FormControl isInvalid={formError}>
+    <FormErrorMessage display="block" mt={8} pos="relative" textAlign="center">
       {formError?.message}
-    </C.FormErrorMessage>
-  </C.FormControl>
+    </FormErrorMessage>
+  </FormControl>
 );
 
 export default BaseFormErrorMessage;

@@ -5,7 +5,7 @@ import { Global } from '@emotion/react';
 import { useRouter } from 'next/router';
 import 'focus-visible/dist/focus-visible';
 
-const AuikContent = ({ children, seo, styles, theme }) => {
+const AuikContent = ({ children, seo, theme }) => {
   const { asPath } = useRouter();
 
   return (
@@ -16,7 +16,6 @@ const AuikContent = ({ children, seo, styles, theme }) => {
             box-shadow: none;
             outline: none;
           },
-          ${styles}
         `}
       />
       <DefaultSeo

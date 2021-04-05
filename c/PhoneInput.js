@@ -1,11 +1,11 @@
-import * as C from '@chakra-ui/react';
 import React, { forwardRef } from 'react';
+import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 
 const PhoneInput = (props, ref) => (
-  <C.InputGroup>
-    <C.InputLeftAddon bg="gray.100">+1</C.InputLeftAddon>
-    <C.Input ref={ref} placeholder="(012) 345-6789" type="tel" {...props} />
-  </C.InputGroup>
+  <InputGroup>
+    <InputLeftAddon bg="gray.100">+1</InputLeftAddon>
+    <Input ref={ref} placeholder="(012) 345-6789" type="tel" {...props} />
+  </InputGroup>
 );
 
 export default forwardRef(PhoneInput);

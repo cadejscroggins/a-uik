@@ -1,34 +1,39 @@
-import * as C from '@chakra-ui/react';
 import React, { forwardRef, useState } from 'react';
 import { Eye, EyeOff } from 'react-feather';
+import {
+  Icon,
+  IconButton,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Tooltip,
+} from '@chakra-ui/react';
 
 const PasswordInput = (props, ref) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const text = passwordVisible ? 'Hide password' : 'Show password';
 
   return (
-    <C.InputGroup>
-      <C.Input
+    <InputGroup>
+      <Input
         ref={ref}
         type={passwordVisible ? 'text' : 'password'}
         {...props}
       />
-      <C.InputRightElement>
-        <C.Tooltip
+      <InputRightElement>
+        <Tooltip
           fontSize={1}
           hasArrow
           label={text}
           offset={[0, -4]}
           placement="top"
         >
-          <C.IconButton
+          <IconButton
             aria-label={text}
             borderBottomLeftRadius={0}
             borderTopLeftRadius={0}
             colorScheme="gray"
-            icon={
-              passwordVisible ? <C.Icon as={EyeOff} /> : <C.Icon as={Eye} />
-            }
+            icon={passwordVisible ? <Icon as={EyeOff} /> : <Icon as={Eye} />}
             onClick={() => setPasswordVisible(!passwordVisible)}
             sx={{
               '&:hover': { bg: 'transparent', opacity: '1' },
@@ -36,9 +41,9 @@ const PasswordInput = (props, ref) => {
             }}
             variant="ghost"
           />
-        </C.Tooltip>
-      </C.InputRightElement>
-    </C.InputGroup>
+        </Tooltip>
+      </InputRightElement>
+    </InputGroup>
   );
 };
 
