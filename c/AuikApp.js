@@ -3,6 +3,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import React from 'react';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
+import { setContext } from '@apollo/client/link/context';
 import AuikContent from './AuikContent';
 
 Amplify.configure({
@@ -30,6 +31,12 @@ const AuikApp = (props) => (
       new A.ApolloClient({
         cache: new A.InMemoryCache(),
         link: A.from([
+          setContext(async () => ({
+            headers: {
+              jwt: (await Auth.currentAuthenticatedUser())?.signInUserSession
+                ?.accessToken?.jwtToken,
+            },
+          })),
           createAuthLink(appsyncLinkConfig),
           createSubscriptionHandshakeLink(appsyncLinkConfig),
         ]),
