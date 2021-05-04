@@ -25,7 +25,7 @@
     "@chakra-ui/react": "^1.6.0",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.3.0",
-    "a-conf": "^0.1.20",
+    "a-conf": "^0.1.21",
     "aws-amplify": "^3.3.27",
     "eslint": "^7.25.0",
     "framer-motion": "^4.1.11",
