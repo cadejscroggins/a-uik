@@ -1,20 +1,27 @@
 import * as C from '@chakra-ui/react';
 import React, { forwardRef, useState } from 'react';
 
-const PasswordInput = (props, ref) => {
+const PasswordInput = (
+  {
+    hidePasswordText = 'Hide password',
+    showPasswordText = 'Show password',
+    ...rest
+  },
+  ref
+) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const text = passwordVisible ? 'Hide password' : 'Show password';
+  const text = passwordVisible ? hidePasswordText : showPasswordText;
 
   return (
     <C.InputGroup>
       <C.Input
         ref={ref}
         type={passwordVisible ? 'text' : 'password'}
-        {...props}
+        {...rest}
       />
       <C.InputRightElement>
         <C.Tooltip
-          fontSize={1}
+          fontSize={2}
           hasArrow
           label={text}
           offset={[0, -4]}
