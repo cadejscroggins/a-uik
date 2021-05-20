@@ -3,6 +3,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import React from 'react';
 import { createAuthLink } from 'aws-appsync-auth-link';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { setContext } from '@apollo/client/link/context';
 import AuikContent from './AuikContent';
 
