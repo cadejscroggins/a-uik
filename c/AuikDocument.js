@@ -5,7 +5,6 @@ import AuthRedirectScript from './AuthRedirectScript';
 
 const AuikDocument = ({
   __NEXT_DATA__: {
-    page,
     props: {
       pageProps: { isPrivateRoute, isPublicRoute },
     },
@@ -20,7 +19,6 @@ const AuikDocument = ({
         <AuthRedirectScript
           isPrivateRoute={isPrivateRoute}
           isPublicRoute={isPublicRoute}
-          page={page}
           privateRouteRedirect={privateRouteRedirect}
           publicRouteRedirect={publicRouteRedirect}
         />
